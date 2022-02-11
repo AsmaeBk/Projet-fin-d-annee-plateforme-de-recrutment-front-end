@@ -1,1 +1,67 @@
-/* You can add global styles to this file, and also import other style files */
+@import 'https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css';
+@import 'https://use.fontawesome.com/releases/v5.8.1/css/all.css';
+@import "~angular-notifier/styles";
+@import "~font-awesome/css/font-awesome.css";
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width:100%;
+  height: 40px;
+  background-color: blue;
+  text-align: center;
+  color: white;
+}
+
+.container{
+  margin-top:5%;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  background-color: #fff;
+  color: #555;
+  font-family: 'Lato', 'Arial', sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  text-rendering: optimizeLegibility;
+}
+
+td {
+  cursor: pointer;
+}
+
+.move-right {
+  position: absolute;
+  right: 0;
+}
+
+.move-left {
+  position: absolute;
+  left: 0;
+}
+
+.btn-file {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-file input[type=file] {
+  position: absolute;
+  top: 0;
+  right: 0;
+  min-width: 100%;
+  min-height: 100%;
+  font-size: 100px;
+  text-align: right;
+  filter: alpha(opacity=0);
+  opacity: 0;
+  outline: none;
+  background: white;
+  cursor: inherit;
+  display: block;
+}

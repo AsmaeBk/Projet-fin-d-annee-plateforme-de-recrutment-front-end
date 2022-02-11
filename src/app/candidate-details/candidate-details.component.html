@@ -1,0 +1,28 @@
+<a class="btn btn-success" href="#candList"><i class="fa fa-arrow-left"></i>Return </a>
+<h2>
+  View Candidate Details
+</h2>
+<div>
+<!-- <div> <label><b>Post id : </b></label>{{candidate.poste_id}}</div>-->
+ <div>   <label><b >Post title : </b></label>{{candidate.posteTitle}}</div>
+ <div>  <label><b >Full name : </b></label>{{candidate.fullName}}</div>
+ <div> <label><b>Address : </b></label>{{candidate.address}}</div>
+<div>  <label><b >Email : </b></label>{{candidate.email}}</div>
+<div>  <label><b >Diploma year : </b></label>{{candidate.diplomaYear}}</div>
+<div> <label><b>Age : </b></label>{{candidate.age}}</div>
+<div> <label><b>Cin : </b></label>{{candidate.cin}}</div>
+   <div> <label><b>Postal code : </b></label>{{candidate.postalCode}}</div>
+  <div>  <label><b>Diploma title : </b></label>{{candidate.diplomaTitle}}</div>
+ <div>  <label><b>Establishment : </b></label>{{candidate.establishment}}</div>
+ <div>  <label><b>Speciality : </b></label>{{candidate.speciality}}</div>
+  <div> <label><b>Phone : </b></label>{{candidate.tel}}</div>
+  <div>  <label><b>City : </b></label>{{candidate.city}}</div>
+  <div >  <label><b>Cin file : </b></label><a href="{{candidate.cinFile}}">{{candidate.cinFile}}</a></div>
+  <div>  <label><b>Diploma file : </b></label><a href="{{candidate.diplomaFile}}">{{candidate.diplomaFile}}</a></div>
+  <div >  <label><b>Cv file : </b></label><a href="{{candidate.cvFile}}">{{candidate.cvFile}}</a></div>
+  <td><a class="btn btn-info"  data-toggle="tab"
+         href="#mail"> Accept/Reject
+  </a></td>
+</div>
+<div id="mail" class="tab-pane fade"> <app-notification></app-notification></div>
+<div id="candList" class="tab-pane fade"> <app-candidate-list></app-candidate-list></div>

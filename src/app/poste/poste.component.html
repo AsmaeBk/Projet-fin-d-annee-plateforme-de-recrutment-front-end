@@ -1,0 +1,485 @@
+<nav class="navbar navbar-expand-lg ">
+  <a class="navbar-brand" style="color:white;">Posts</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarColor02">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a style="color: white"   [hidden]="!isAdminOrManager"  class="btn btn-dark" (click)="onOpenModal(null,'add')"><i style="color: white" class="fa fa-plus-square"></i>Add Post <span class="sr-only">(current)</span></a>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <i class="fa fa-search"></i>
+      <input type="search"  #key="ngModel" ngModel
+      (ngModelChange)="searchPostes(key.value)" name="key" id="searchName" class="form-control mr-sm-2" placeholder="Search posts..." required>
+    </form>
+  </div>
+
+</nav>
+
+<div  style="color: red" ><b>If you want to update the provided information  , please contact the administrator via the following email : admin@gmail.com</b></div>
+<div class="container" id="main-container">
+
+  <div class="row">
+    <div *ngFor="let poste of postes" class="col-md-12 col-xl-6">
+      <a href="https://www.leconomiste.com/sites/default/files/eco7/public/anam-001.jpg"><img src="https://www.leconomiste.com/sites/default/files/eco7/public/anam-001.jpg"  class="img-fluid img-thumbnail"></a>
+      <div class="card m-b-30">
+        <ul class="list-group list-group-flush">
+          <div class="card-body row">
+          <li class="list-group-item">
+     <i>     <div class="col-6">
+<!--            <a href=""><img src="https://www.leconomiste.com/sites/default/files/eco7/public/anam-001.jpg"  class="img-fluid img-thumbnail"></a>-->
+            </div>
+     </i>
+          </li>
+
+            <div>
+            <i></i>
+            <i class="m-0">
+                 <b>Post title : </b> {{poste?.title}}
+
+            </i>
+          </div>
+
+          <li class="list-group-item">
+<div>
+  <i></i>
+  <i class="m-0">
+    <b>Poste details : </b> <i class="fa fa-info float-right "></i><b> <a href="{{poste?.content}}"  ><i class=" fa fa-external-link"></i>Post details</a></b>
+
+  </i>
+</div>
+        </li>
+        </div>
+
+          <li class="list-group-item"><i class="fa fa-hourglass float-right"></i><b>Expiration date : </b>{{poste?.dateLimite}}
+          </li>
+<!--          <li class="list-group-item"><i class="fa fa-phone float-right"></i>Phone : {{poste?.phone}}</li>-->
+        </ul>
+        <div class="card-body">
+          <div class="float-right btn-group btn-group-sm">
+<!--            <a class="btn btn-danger tooltips" (click)="changeTitle('Apply')" href="#candi">-->
+<!--            <i class="fa fa-suitcase " >Apply</i>-->
+<!--          </a>-->
+            <div class="border">
+              <a class="btn btn-success tooltips" (click)="open(content)">
+                <i class="fa fa-suitcase " ></i>Apply
+              </a>
+<!--              <button class="btn btn-success tooltips" (click)="open(content)">-->
+<!--                <i class="fa fa-suitcase " ></i>Apply-->
+<!--              </button>-->
+
+            <a [hidden]="!isAdminOrManager" (click)="onOpenModal(poste,'edit')" class="btn btn-info " data-placement="top" data-original-title="Edit"><i class="fa fa-pencil"></i> </a>
+            <a [hidden]="!isAdmin"  (click)="onOpenModal(poste,'delete')" class="btn btn-secondary tooltips" data-placement="top" data-original-title="Delete"><i class="fa fa-times"></i></a>
+            </div>
+            <div>
+            <!--        !!!!!!!!!!!!!!!!!!!!!!!!-->
+<!--            <div class="container" style="margin-top: 20px;">-->
+<!--              <div class="panel panel-default">-->
+<!--                <div class="panel-heading">-->
+<!--                  <h4>Upload and Download Files</h4>-->
+<!--                </div><br>-->
+<!--                <div class="panel-body">-->
+<!--                  <strong>Select files from your computer</strong>-->
+<!--                  <div *ngIf="fileStatus.status==='progress'">-->
+<!--                    <div class="progress">-->
+<!--                      <div [style.width.%]="fileStatus.percent" class="progress-bar progress-bar-animated bg-info" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">-->
+<!--                        {{ fileStatus.requestType }} {{ fileStatus.percent }}-->
+<!--                      </div>-->
+<!--                    </div>-->
+<!--                  </div> <hr>-->
+
+<!--                  <form enctype="multipart/form-data">-->
+<!--                    <fieldset>-->
+<!--                      <div class="form-group">-->
+<!--                        <div>-->
+<!--                          <input type="file" (change)="onUploadFiles($any($event).target.files)" name="files" multiple class="form-control" />-->
+<!--                        </div>-->
+<!--                      </div>-->
+<!--                    </fieldset>-->
+<!--                  </form>-->
+
+<!--                  <br>-->
+
+<!--                  <div  *ngIf="filenames!.length > 0" class="js-upload-finished">-->
+<!--                    <h3>Processed files</h3>-->
+<!--                    <div *ngFor="let filename of filenames" class="list-group">-->
+<!--                      <a (click)="onDownloadFile(filename)" class="list-group-item list-group-item-success" style="cursor: pointer;">-->
+<!--                        {{ filename }}-->
+<!--                        <a class="alert-success float-right">Download</a>-->
+<!--                      </a><br>-->
+<!--                    </div>-->
+<!--                  </div>-->
+
+<!--                </div>-->
+<!--              </div>-->
+<!--            </div>-->
+            <!--        !!!!!!!!!!!!!!!!!!!!!!-->
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+<!--     CANDIDATES APPLY                           >-->
+      <ng-template #content let-modal>
+      <div class="container" id="candi" name="candi">
+
+        <h2 class="text-center"> <i  class="fa fa-angle-double-down">Add your information</i></h2>
+        <div class="container">
+          <form (ngSubmit)="onSubmit()">
+            <div class="form-group">
+              <label>Poste title</label>
+              {{ candidate.posteTitle}}
+              <input value="{{poste.title+ '_'+ poste.title}}" class="form-control" id="posteTitle"
+                     [(ngModel)]="candidate.posteTitle" name="posteTitle" >
+
+
+
+<!--              <label type="text" class="form-control" id="posteTitle"-->
+<!--                     [(ngModel)]="candidate.posteTitle" name="posteTitle" readonly="">"{{poste.title}}"</label>-->
+            </div>
+            <div class="form-group">
+              <label>Full name</label>
+              <input type="text" class="form-control" id="fullName"
+                     [(ngModel)]="candidate.fullName" name="fullName">
+            </div>
+            <div class="form-group">
+              <label>Address</label>
+              <input type="text" class="form-control" id="address"
+                     [(ngModel)]="candidate.address" name="address">
+            </div>
+            <div class="form-group">
+              <label>Email</label>
+              <input type="text" class="form-control" id="email"
+                     [(ngModel)]="candidate.email" name="email">
+            </div>
+            <!--  <div class="form-group">-->
+            <!--    <label>Email</label>-->
+            <!--    <input type="text" class="form-control" id="email"-->
+            <!--           [(ngModel)]="candidate.email" name="email">-->
+            <!--  </div>-->
+            <div class="form-group">
+              <label>Diploma year</label>
+              <input type="text" class="form-control" id="diplomaYear"
+                     [(ngModel)]="candidate.diplomaYear" name="diplomaYear">
+            </div>
+            <div class="form-group">
+              <label>Age</label>
+              <input type="text" class="form-control" id="age"
+                     [(ngModel)]="candidate.age" name="age">
+            </div>
+            <div class="form-group">
+              <label>Cin</label>
+              <input type="text" class="form-control" id="cin"
+                     [(ngModel)]="candidate.cin" name="cin">
+            </div>
+            <div class="form-group">
+              <label>Postal code</label>
+              <input type="text" class="form-control" id="postalCode"
+                     [(ngModel)]="candidate.postalCode" name="postalCode">
+            </div>
+            <div class="form-group">
+              <label>Diploma title</label>
+              <input type="text" class="form-control" id="diplomaTitle"
+                     [(ngModel)]="candidate.diplomaTitle" name="diplomaTitle">
+            </div>
+            <div class="form-group">
+              <label>Establishment</label>
+              <input type="text" class="form-control" id="establishment"
+                     [(ngModel)]="candidate.establishment" name="establishment">
+            </div>
+            <div class="form-group">
+              <label>Speciality</label>
+              <input type="text" class="form-control" id="speciality"
+                     [(ngModel)]="candidate.speciality" name="speciality">
+            </div>
+            <div class="form-group">
+              <label>Tel</label>
+              <input type="text" class="form-control" id="tel"
+                     [(ngModel)]="candidate.tel" name="tel">
+            </div>
+            <div class="form-group">
+              <label>City</label>
+              <input type="text" class="form-control" id="city"
+                     [(ngModel)]="candidate.city" name="city">
+            </div>
+            <div class="form-group">
+              <label>Cin file (Drive link)</label>
+              <input type="text" class="form-control" id="cinFile"
+                     [(ngModel)]="candidate.cinFile" name="cinFile">
+            </div>
+            <div class="form-group">
+              <label>Diploma file(Drive link)</label>
+              <input type="text" class="form-control" id="diplomaFile"
+                     [(ngModel)]="candidate.diplomaFile" name="diplomaFile">
+            </div>
+            <div class="form-group">
+              <label>Cv file(Drive link)</label>
+              <input type="text" class="form-control" id="cvFile"
+                     [(ngModel)]="candidate.cvFile" name="cvFile">
+            </div>
+            <button class="btn btn-success" type="submit"  > Submit</button>
+
+          </form>
+        </div>
+      </div>
+      </ng-template>
+      <!--      !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+
+  <!--  Apply-->
+      <div>
+<!--  <ng-template #content let-modal>-->
+<!--    <div class="modal-header">-->
+<!--      <h4 class="modal-title" id="modal-basic-title">Apply</h4>-->
+<!--      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">-->
+<!--        <span aria-hidden="true">&times;</span>-->
+<!--      </button>-->
+<!--    </div>-->
+<!--    <div class="modal-body">-->
+<!--      <form #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate>-->
+<!--&lt;!&ndash;        <div class="form-group" readonly="">&ndash;&gt;-->
+<!--&lt;!&ndash;          <label for="id">Id</label>&ndash;&gt;-->
+<!--&lt;!&ndash;          <div class="input-group">&ndash;&gt;-->
+
+<!--&lt;!&ndash;            <input id="id" class="form-control" value="56"" >&ndash;&gt;-->
+<!--&lt;!&ndash;          </div>&ndash;&gt;-->
+<!--&lt;!&ndash;        </div>&ndash;&gt;-->
+<!--        <div class="form-group" >-->
+<!--          <label for="poste_id">Post id</label>-->
+<!--          <div class="input-group">-->
+
+<!--            <input id="poste_id" class="form-control" value="{{poste.id}}" >-->
+<!--          </div>-->
+<!--        </div>-->
+<!--&lt;!&ndash;        readonly=""&ndash;&gt;-->
+<!--        <div class="form-group" >-->
+<!--          <label for="posteTitle">Post title</label>-->
+<!--          <div class="input-group">-->
+
+<!--            <input id="posteTitle" class="form-control" value="{{poste.title}}" >-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        <div class="form-group">-->
+<!--          <label for="nomComplet">Full name</label>-->
+<!--          <div class="input-group">-->
+<!--            <input id="nomComplet" class="form-control" >-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        <div class="form-group">-->
+<!--          <label for="adresse">Address</label>-->
+<!--          <div class="input-group">-->
+<!--            <input id="adresse" class="form-control" >-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        <div class="form-group">-->
+<!--          <label for="email">Email</label>-->
+<!--          <div class="input-group">-->
+<!--            <input id="email" class="form-control" >-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        <div class="form-group">-->
+<!--          <label for="anneeDiplome">Year of graduation</label>-->
+<!--          <div class="input-group">-->
+<!--            <input id="anneeDiplome" class="form-control" >-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        <div class="form-group">-->
+<!--          <label for="age">Age</label>-->
+<!--          <div class="input-group">-->
+<!--            <input id="age" class="form-control" >-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        <div class="form-group">-->
+<!--          <label for="cin">CIN</label>-->
+<!--          <div class="input-group">-->
+<!--            <input id="cin" class="form-control" >-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        <div class="form-group">-->
+<!--          <label for="codePostal">Postal code</label>-->
+<!--          <div class="input-group">-->
+<!--            <input id="codePostal" class="form-control" >-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        <div class="form-group">-->
+<!--          <label for="intituleDiplome">Diploma title</label>-->
+<!--          <div class="input-group">-->
+<!--            <input id="intituleDiplome" class="form-control" >-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        <div class="form-group">-->
+<!--          <label for="etablissement">Establishment</label>-->
+<!--          <div class="input-group">-->
+<!--            <input id="etablissement" class="form-control" >-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        <div class="form-group">-->
+<!--          <label for="specialite">Speciality</label>-->
+<!--          <div class="input-group">-->
+<!--            <input id="specialite" class="form-control" >-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        <div class="form-group">-->
+<!--          <label for="tel">Telephone</label>-->
+<!--          <div class="input-group">-->
+<!--            <input id="tel" class="form-control" >-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        <div class="form-group">-->
+<!--          <label for="ville">City</label>-->
+<!--          <div class="input-group">-->
+<!--            <input id="ville" class="form-control" >-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        <div class="form-group">-->
+<!--          <label for="cinfile">CIN (Drive link)</label>-->
+<!--          <div class="input-group">-->
+<!--            <input id="cinfile" class="form-control" >-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        <div class="form-group">-->
+<!--          <label for="diplomeFile">Diploma (Drive link)</label>-->
+<!--          <div class="input-group">-->
+<!--            <input id="diplomeFile" class="form-control" >-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        <div class="form-group">-->
+<!--          <label for="cvFile">Cv (Drive link)</label>-->
+<!--          <div class="input-group">-->
+<!--            <input  ngModel name="cvFile" id="cvFile" class="form-control" >-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        <div class="move-left m-lg-3">-->
+<!--          <button data-dismiss="modal" class="btn btn-info">Submit</button>-->
+<!--        </div>-->
+<!--      </form>-->
+<!--    </div>-->
+<!--    <div class="modal-footer">-->
+<!--      <button type="button"   class="btn btn-danger " (click)="modal.close('Save click') "><i class="fa fa-save"> close</i></button>-->
+<!--    </div>-->
+<!--  </ng-template>-->
+
+<!--  ////////////////////////////>-->
+      </div>
+    </div>
+  </div>
+  <!-- Add Poste Modal -->
+  <div class="modal fade" id="addPosteModal" tabindex="-1" role="dialog" aria-labelledby="addPosteModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addPosteModalLabel">Add Post</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" >
+          <form #addForm="ngForm" (ngSubmit)="onAddPoste(addForm)">
+            <div class="form-group">
+              <label for="title">Title</label>
+              <input type="text" ngModel name="title" class="form-control" id="title" placeholder="Title" required>
+            </div>
+            <div class="form-group">
+              <label for="content">Content</label>
+              <input type="text" ngModel name="content" class="form-control" id="content" placeholder="Content" required>
+            </div>
+            <div class="form-group">
+              <label for="dateLimite">Date limite</label>
+              <input type="date" ngModel name="dateLimite" class="form-control" id="dateLimite" placeholder="Date Limite" required>
+            </div>
+<!--            <div class="form-group">-->
+<!--              <label for="phone">Phone</label>-->
+<!--              <input type="text" ngModel name="phone" class="form-control" id="phone" placeholder="Phone" required>-->
+<!--            </div>-->
+            <div class="form-group">
+              <label for="imageUrl">Image URL</label>
+              <input type="text" ngModel name="imageUrl" class="form-control" id="imageUrl" placeholder="Image URL" required>
+            </div>
+
+            <div class="modal-footer">
+              <button type="button" id="add-poste-form" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button [disabled]="addForm.invalid" type="submit" class="btn btn-primary" >Save changes</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Edit Modal -->
+
+  <div class="modal fade" id="updatePosteModal" tabindex="-1" role="dialog" aria-labelledby="posteEditModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="updatePosteModalLabel">Edit Poste {{editPoste?.title}}</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form #editForm="ngForm">
+            <div class="form-group">
+              <label for="title">Title</label>
+              <input type="text" ngModel="{{editPoste?.title}}"  name="title" class="form-control" id="title"  placeholder="Title">
+            </div>
+            <input type="hidden" ngModel="{{editPoste?.id}}"  name="id" class="form-control" id="id" placeholder="id">
+            <input type="hidden" ngModel="{{editPoste?.posteCode}}" name="postCode" class="form-control" id="postCode" placeholder="post code">
+            <div class="form-group">
+              <label for="content">Content</label>
+              <input type="content" ngModel="{{editPoste?.content}}" name="content" class="form-control" id="content" placeholder="Content">
+            </div>
+            <div class="form-group">
+              <label for="dateLimite">Date limite</label>
+              <input type="date" ngModel="{{editPoste?.dateLimite}}" name="dateLimite" class="form-control" id="dateLimite" >
+            </div>
+
+<!--            <div class="form-group">-->
+<!--              <label for="phone">Phone</label>-->
+<!--              <input type="text"  name="phone" class="form-control" id="phone" name="phone" placeholder="Phone">-->
+<!--            </div>-->
+            <div class="form-group">
+              <label for="phone">Image URL</label>
+              <input [disabled]="true" type="text" ngModel="https://www.infomediaire.net/wp-content/uploads/2020/02/ANAM.jpg" name="imageUrl" class="form-control" id="imageUrl" placeholder="Image URL">
+            </div>
+            <div class="modal-footer">
+              <button type="button" id="" data-dismiss="modal" class="btn btn-secondary">Close</button>
+              <button (click)="onUpdatePoste(editForm.value)" data-dismiss="modal" class="btn btn-primary"  >Save changes</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Delete Modal -->
+  <div class="modal fade" id="deletePosteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModelLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="deleteModelLabel">Delete Post</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>Are you sure you want to delete post {{deletePoste?.title}}</p>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+            <button  (click)="onDeletePoste(deletePoste!.id)" class="btn btn-danger" data-dismiss="modal">Yes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Notification for no postes -->
+<div *ngIf="postes?.length == 0" class="col-lg-12 col-md-12 col-xl-12">
+  <div class="alert alert-info" role="alert">
+    <h4 class="alert-heading">NO POSTS!</h4>
+    <p>No posts were found.</p>
+  </div>
+</div>

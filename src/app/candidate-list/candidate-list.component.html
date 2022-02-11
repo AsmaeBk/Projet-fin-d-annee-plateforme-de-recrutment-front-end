@@ -1,0 +1,94 @@
+<!--<h2 class="text-center"><i class="fa fa-align-center">Candidates list</i></h2>-->
+<a  class="btn btn-success" href="#candList"><i class="fa fa-arrow-left"></i>Return </a>
+<table class="table table-striped">
+
+<thead>
+<tr>
+  <th>Answer</th>
+  <th>Actions</th>
+<!--  <th>Poste id</th>-->
+  <th>poste Title</th>
+  <th>Full name</th>
+  <th>Address</th>
+  <th>Email</th>
+  <th>Diploma year</th>
+ <th>age</th>
+  <th>Cin</th>
+  <th>Postal code</th>
+  <th>Diploma title</th>
+  <th>Establishment</th>
+  <th>Speciality</th>
+  <th>Tel</th>
+  <th>City</th>
+  <th>Cin file</th>
+  <th>Diploma file</th>
+  <th>Cv file</th>
+
+  <th>Actions</th>
+  <th>Answer</th>
+</tr>
+</thead>
+  <tbody>
+<tr *ngFor="let candidate of candidates">
+  <td>
+
+  <a class="btn btn-info"  data-toggle="tab"
+         href="#mail">
+    <!--          <i class="fa fa-cogs"></i>-->
+    Accept/Reject
+  </a>
+
+  </td>
+  <td>
+    <button (click)="updateCandidate(candidate.id)" class="btn btn-success ">
+      <i class="fa fa-edit"></i>
+    </button>
+    <button [hidden]="!isAdmin"  (click)="deleteCandidate(candidate.id)" class="btn btn-danger">
+      <i class="fa fa-trash-o"></i>
+    </button>
+    <button  (click)="candidateDetails(candidate.id)" class="btn btn-outline-dark">
+      <i class="fa fa-eye"></i>
+    </button>
+  </td>
+<!--<td>{{candidate.poste_id}}</td>-->
+  <td>{{candidate.posteTitle}}</td>
+  <td>{{candidate.fullName}}</td>
+  <td>{{candidate.address}}</td>
+  <td>{{candidate.email}}</td>
+  <td>{{candidate.diplomaYear}}</td>
+  <td>{{candidate.age}}</td>
+  <td>{{candidate.cin}}</td>
+  <td>{{candidate.postalCode}}</td>
+  <td>{{candidate.diplomaTitle}}</td>
+  <td>{{candidate.establishment}}</td>
+  <td>{{candidate.speciality}}</td>
+  <td>{{candidate.tel}}</td>
+  <td>{{candidate.city}}</td>
+  <td><a href="{{candidate.cinFile}}">{{candidate.cinFile}}</a></td>
+  <td><a href="{{candidate.diplomaFile}}">{{candidate.diplomaFile}}</a></td>
+  <td ><a href="{{candidate.cvFile}}">{{candidate.cvFile}}</a></td>
+
+<td>
+
+
+  <button (click)="updateCandidate(candidate.id)" class="btn btn-success ">
+    <i class="fa fa-edit"></i>
+  </button>
+<button [hidden]="!isAdmin"   (click)="deleteCandidate(candidate.id)" class="btn btn-danger">
+  <i class="fa fa-trash-o"></i>
+</button>
+  <button  (click)="candidateDetails(candidate.id)" class="btn btn-outline-dark">
+    <i class="fa fa-eye"></i>
+  </button>
+</td>
+  <td><a class="btn btn-info"  data-toggle="tab"
+          href="#mail">
+    <!--          <i class="fa fa-cogs"></i>-->
+  Accept/Reject
+  </a>
+  </td>
+</tr>
+  </tbody>
+</table>
+<div id="mail" class="tab-pane fade"> <app-notification></app-notification></div>
+

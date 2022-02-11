@@ -1,0 +1,189 @@
+<div class="container">
+  <div class="border">
+  <button class="btn btn-success tooltips" (click)="open(content)">
+    <i class="fa fa-suitcase " ></i>Apply</button>
+</div>
+  <table class="table table-bordered table-striped ">
+    <thead>
+    <tr>
+      <th>Post Id</th>
+      <th>Post title</th>
+<!--      <th>Candidate id</th>-->
+      <th>Full Name</th>
+      <th>Address</th>
+      <th>Email</th>
+      <th>Year of graduation</th>
+      <th>Age</th>
+      <th>CIN</th>
+      <th>Postal code</th>
+      <th>Diploma title</th>
+      <th>establishment</th>
+
+      <th>Speciality</th>
+      <th>telephone</th>
+      <th>city</th>
+      <th>CIN file</th>
+      <th>diplome file</th>
+      <th>Cv File</th>
+      <th>Actions
+      </th>
+      <th>Answer</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let candidat of candidats">
+      <td><span>{{candidat.posteId}}</span></td>
+      <td><span>{{candidat.posteTitle}}</span></td>
+<!--      <td><span>{{candidat.id}}</span></td>-->
+      <td><span>{{candidat.NomComplet}}</span></td>
+      <td><span>{{candidat.adresse}}</span></td>
+      <td><span>{{candidat.email}}</span></td>
+      <td><span>{{candidat.anneeDiplome}}</span></td>
+      <td><span>{{candidat.age}}</span></td>
+      <td><span>{{candidat.CIN}}</span></td>
+      <td><span>{{candidat.codePostal}}</span></td>
+      <td><span>{{candidat.intituleDiplome}}</span></td>
+      <td><span>{{candidat.etablissement}}</span></td>
+
+      <td><span>{{candidat.Specialite}}</span></td>
+      <td><span>{{candidat.Tel}}</span></td>
+      <td><span>{{candidat.ville}}</span></td>
+      <td><span>{{candidat.CINfile}}</span></td>
+      <td><span>{{candidat.diplomeFile}}</span></td>
+      <td><span>{{candidat.CvFile}}</span></td>
+      <td>
+        <button class="btn btn-sm btn-info">
+        <i class="fa fa-search"></i>Details</button>
+        <button class="btn btn-sm btn-outline-success">
+          <i class="fa fa-edit"></i>Edit</button>
+        <button class="btn btn-sm btn-danger">
+          <i class="fa fa-remove"></i>Delete</button>
+      </td>
+      <td><button class="btn btn-warning" >Accept</button><button class="btn btn-dark">Refuse</button></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Apply</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate>
+      <div class="form-group" readonly="">
+        <label for="posteId">Post id</label>
+        <div class="input-group">
+
+          <input id="posteId" class="form-control" value="1" readonly >
+        </div>
+      </div>
+<!--      <div class="form-group" readonly="">-->
+<!--        <label for="posteTitle">Post title</label>-->
+<!--        <div class="input-group">-->
+
+<!--          <input id="posteTitle" class="form-control" value="poste"  readonly>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--      <div class="form-group">-->
+<!--        <label for="fullName">Full name</label>-->
+<!--        <div class="input-group">-->
+<!--          <input id="fullName" class="form-control" >-->
+<!--        </div>-->
+<!--      </div>-->
+<!--      <div class="form-group">-->
+<!--        <label for="adresse">Address</label>-->
+<!--        <div class="input-group">-->
+<!--          <input id="adresse" class="form-control" >-->
+<!--        </div>-->
+<!--      </div>-->
+<!--      <div class="form-group">-->
+<!--        <label for="email">Email</label>-->
+<!--        <div class="input-group">-->
+<!--          <input id="email" class="form-control" >-->
+<!--        </div>-->
+<!--      </div>-->
+<!--      <div class="form-group">-->
+<!--        <label for="anneeDiplome">Year of graduation</label>-->
+<!--        <div class="input-group">-->
+<!--          <input id="anneeDiplome" class="form-control" >-->
+<!--        </div>-->
+<!--      </div>-->
+<!--      <div class="form-group">-->
+<!--        <label for="age">Age</label>-->
+<!--        <div class="input-group">-->
+<!--          <input id="age" class="form-control" >-->
+<!--        </div>-->
+<!--      </div>-->
+<!--      <div class="form-group">-->
+<!--        <label for="CIN">CIN</label>-->
+<!--        <div class="input-group">-->
+<!--          <input id="CIN" class="form-control" >-->
+<!--        </div>-->
+<!--      </div>-->
+<!--      <div class="form-group">-->
+<!--        <label for="codePostal">Postal code</label>-->
+<!--        <div class="input-group">-->
+<!--          <input id="codePostal" class="form-control" >-->
+<!--        </div>-->
+<!--      </div>-->
+<!--      <div class="form-group">-->
+<!--        <label for="intituleDiplome">Diploma title</label>-->
+<!--        <div class="input-group">-->
+<!--          <input id="intituleDiplome" class="form-control" >-->
+<!--        </div>-->
+<!--      </div>-->
+<!--      <div class="form-group">-->
+<!--        <label for="etablissement">Establishment</label>-->
+<!--        <div class="input-group">-->
+<!--          <input id="etablissement" class="form-control" >-->
+<!--        </div>-->
+<!--      </div>-->
+<!--      <div class="form-group">-->
+<!--        <label for="Specialite">Speciality</label>-->
+<!--        <div class="input-group">-->
+<!--          <input id="Specialite" class="form-control" >-->
+<!--        </div>-->
+<!--      </div>-->
+<!--      <div class="form-group">-->
+<!--        <label for="Tel">Telephone</label>-->
+<!--        <div class="input-group">-->
+<!--          <input id="Tel" class="form-control" >-->
+<!--        </div>-->
+<!--      </div>-->
+<!--      <div class="form-group">-->
+<!--        <label for="ville">City</label>-->
+<!--        <div class="input-group">-->
+<!--          <input id="ville" class="form-control" >-->
+<!--        </div>-->
+<!--      </div>-->
+<!--      <div class="form-group">-->
+<!--        <label for="CINfile">CIN (Drive link)</label>-->
+<!--        <div class="input-group">-->
+<!--          <input id="CINfile" class="form-control" >-->
+<!--        </div>-->
+<!--      </div>-->
+<!--      <div class="form-group">-->
+<!--        <label for="diplomeFile">Diploma (Drive link)</label>-->
+<!--        <div class="input-group">-->
+<!--          <input id="diplomeFile" class="form-control" >-->
+<!--        </div>-->
+<!--      </div>-->
+<!--      <div class="form-group">-->
+<!--        <label for="CvFile">Cv (Drive link)</label>-->
+<!--        <div class="input-group">-->
+<!--          <input id="CvFile" class="form-control" >-->
+<!--        </div>-->
+<!--      </div>-->
+      <div class="move-left m-lg-3">
+        <button data-dismiss="modal" class="btn btn-info">Submit</button>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-danger " (click)="modal.close('Save click') "><i class="fa fa-save"> close</i></button>
+  </div>
+</ng-template>
+

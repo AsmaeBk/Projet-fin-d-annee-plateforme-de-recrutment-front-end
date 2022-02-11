@@ -1,0 +1,81 @@
+<div class="add-post-content">
+  <div class="container">
+    <div>
+      <h3 class="new-post-title">Create New Post</h3>
+    </div>
+    <hr>
+
+
+
+    <form [formGroup]="addPostForm" (ngSubmit)="addPost()">
+
+      <div class="form-group">
+        <label class="post-title">Title</label>
+        <input type="text" [formControlName]="'title'" class="form-control" placeholder="Title">
+      </div>
+     <div class="form-group">
+       <label class="post-content">Body</label>
+
+       <editor  apiKey="tu63ig9emfhq654xphwbu1il20za3gx8qsryqfbs12n0aejy" [formControlName]="'body'"  [init]="{plugins:'link'}"></editor>
+     </div>
+      <div class="form-group">
+        <button  type="submit" class="btn btn-primary">Post</button>
+      </div>
+    </form>
+  </div>
+
+</div>
+<!--    <h1>TinyMCE 5 Angular Demo</h1>-->
+<!--    <editor-->
+<!--      [init]="{-->
+<!--    height: 500,-->
+<!--    menubar: false,-->
+<!--    plugins: [-->
+<!--      'advlist autolink lists link image charmap print',-->
+<!--      'preview anchor searchreplace visualblocks code',-->
+<!--      'fullscreen insertdatetime media table paste',-->
+<!--      'help wordcount'-->
+<!--    ],-->
+<!--    toolbar:-->
+<!--      'undo redo | formatselect | bold italic'-->
+
+<!--  }"-->
+<!--      initialValue="<p>Initial content of the editor</p>"-->
+<!--    >-->
+<!--    </editor>-->
+<!--<div class="add-post-content">-->
+<!--  <div class="container">-->
+<!--    <div>-->
+<!--      <h3 class="new-post-title">Create New Post</h3>-->
+<!--    </div>-->
+<!--&lt;!&ndash;    <ckeditor&ndash;&gt;-->
+<!--&lt;!&ndash;      [(ngModel)]="ckeditorContent">&ndash;&gt;-->
+
+<!--&lt;!&ndash;    </ckeditor>&ndash;&gt;-->
+<!--    <hr>-->
+<!--&lt;!&ndash;    <form [formGroup]="addPostForm" (ngSubmit)="addPost()">&ndash;&gt;-->
+<!--      <form  (ngSubmit)="addPost()">-->
+<!--      <div class="form-group">-->
+<!--        <label class="post-title">Title</label>-->
+<!--        <input type="text" [formControlName]="'title'" class="form-control" placeholder="Title">-->
+<!--      </div>-->
+<!--      <div class="form-group">-->
+<!--        <label class="post-content">Body</label>-->
+<!--        <editor [init]="{plugins: 'link'}"></editor>-->
+<!--&lt;!&ndash;        <editor [formControlName]="'body'" [init]="{plugins: 'link'}"></editor>&ndash;&gt;-->
+<!--&lt;!&ndash;        <editor [formControlName]="'body'" [init]="{plugins: 'link'}"></editor>&ndash;&gt;-->
+<!--&lt;!&ndash;        <editor [init]="{plugins: 'link'}"></editor>&ndash;&gt;-->
+<!--&lt;!&ndash;        <script src="https://cdn.ckeditor.com/4.16.1/full-all/ckeditor.js"></script>&ndash;&gt;-->
+<!--&lt;!&ndash;        <script src="https://cdn.ckeditor.com/4.16.1/full-all/ckeditor.js"></script>&ndash;&gt;-->
+<!--&lt;!&ndash;        <ckeditor&ndash;&gt;-->
+<!--&lt;!&ndash;          [(ngModel)]="ckeditorContent">&ndash;&gt;-->
+
+<!--&lt;!&ndash;        </ckeditor>&ndash;&gt;-->
+<!--      </div>-->
+<!--      <div class="form-group">-->
+<!--        <button type="submit" class="btn btn-primary">Post</button>-->
+<!--      </div>-->
+
+<!--    </form >-->
+<!--  </div>-->
+<!--</div>-->
